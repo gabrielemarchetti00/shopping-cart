@@ -18,3 +18,24 @@ nav {
     align-items: center;
     list-style: none;
 }
+
+#cart-bar {
+    position: sticky;
+    background-color: rgb(153, 153, 156);
+    top: 0;
+    font-size: 20px;
+    display: flex;
+    justify-content: right;
+    height: 50px;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    height: 25px;
+    font-size: 20px;
+}
+
+#items-section {
+    height: 3000px;
+}

@@ -1,12 +1,14 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import './App.css'
 import uniqid from "uniqid";
-import ballImg from "./images/ball.jpg"
+import ballImg from "./images/ball.webp"
 import bandImg from "./images/band.webp"
-import shirtImg from "./images/shirt.jpg"
-import shoesImg from "./images/shoes.jpg"
+import shirtImg from "./images/jersey.webp"
+import shoesImg from "./images/shoes.webp"
 
 function Shop() {
+  let [itemNum, setItemNum] = useState(0)
   const items = [
     {
       id: uniqid(),
@@ -29,14 +31,39 @@ function Shop() {
       image: shirtImg
     }
   ]
+
+  useEffect(() => {
+    function handlePlus(e) {
+      setItemNum(itemNum ++)
+    }
+
+    document.querySelector(".plus").addEventListener("click", handlePlus)
+  })
+
     return (
       <div>
         <div id="cart-bar">
           <div>Shopping cart: 0</div>
-          <button>Checkout and Pay</button>
+          <button id="cart-btn">Checkout and Pay</button>
         </div>
         <div id="items-section">
-
+          {items.map((item) => {
+            return <div className="item" key={item.id}>
+              <div className="item-title">{item.title}</div>
+              <img className="item-img" src={item.image} alt="item"></img>
+              <div>
+                <form>
+                  <div>
+                    <label>Type the number of items you want: </label>
+                    <input value={itemNum} />
+                    <button className="plus">+</button>
+                    <button className="minus">-</button>
+                  </div>
+                  <button>Add To Cart</button>
+                </form>
+              </div>
+            </div>
+          })}
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import './App.css'
 import uniqid from "uniqid";
 import ballImg from "./images/ball.webp"
@@ -7,40 +7,63 @@ import bandImg from "./images/band.webp"
 import shirtImg from "./images/jersey.webp"
 import shoesImg from "./images/shoes.webp"
 
+const itemsArray = [
+  {
+    id: uniqid(),
+    title: 'Shoe',
+    image: shoesImg,
+    num: 0
+  },
+  {
+    id: uniqid(),
+    title: 'Ball',
+    image: ballImg,
+    num: 0
+  },
+  {
+    id: uniqid(),
+    title: 'Headband',
+    image: bandImg,
+    num: 0
+  },
+  {
+    id: uniqid(),
+    title: 'Jersey',
+    image: shirtImg,
+    num: 0
+  }
+]
+
 function Shop() {
-  let [itemNum, setItemNum] = useState(0)
-  const items = [
-    {
-      id: uniqid(),
-      title: 'Shoe',
-      image: shoesImg
-    },
-    {
-      id: uniqid(),
-      title: 'Ball',
-      image: ballImg
-    },
-    {
-      id: uniqid(),
-      title: 'Headband',
-      image: bandImg
-    },
-    {
-      id: uniqid(),
-      title: 'Jersey',
-      image: shirtImg
-    }
-  ]
+  const [items, setItems] = useState(itemsArray)
 
-  useEffect(() => {
-    function handlePlus(e) {
-      setItemNum(itemNum ++)
-    }
+  function handleInput() {
 
-    document.querySelector(".plus").addEventListener("click", handlePlus)
-  })
+  }
 
-    return (
+  function handlePlus(e){
+    e.preventDefault()
+    setItems(items.map(function(item) {
+      if(item.id === e.target.id) {
+        item.num ++
+      }
+      return item
+    }))
+  }
+
+  function handleMinus(e){
+    e.preventDefault()
+    setItems(items.map(function(item) {
+      if(item.id === e.target.id) {
+        if(item.num > 0) {
+          item.num --
+        }
+      }
+      return item
+    }))
+  }
+  
+  return (
       <div>
         <div id="cart-bar">
           <div>Shopping cart: 0</div>
@@ -55,9 +78,9 @@ function Shop() {
                 <form>
                   <div>
                     <label>Type the number of items you want: </label>
-                    <input value={itemNum} />
-                    <button className="plus">+</button>
-                    <button className="minus">-</button>
+                    <input value={item.num} onChange={handleInput}/>
+                    <button className="plus" onClick={handlePlus} id={item.id}>+</button>
+                    <button className="minus" onClick={handleMinus} id={item.id}>-</button>
                   </div>
                   <button>Add To Cart</button>
                 </form>

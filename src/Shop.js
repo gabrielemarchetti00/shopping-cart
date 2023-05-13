@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import './App.css'
 import uniqid from "uniqid";
@@ -6,6 +6,7 @@ import ballImg from "./images/ball.webp"
 import bandImg from "./images/band.webp"
 import shirtImg from "./images/jersey.webp"
 import shoesImg from "./images/shoes.webp"
+import Checkout from "./Checkout"
 
 const itemsArray = [
   {
@@ -37,6 +38,7 @@ const itemsArray = [
 function Shop() {
   const [items, setItems] = useState(itemsArray)
   const [total, setTotal] = useState(0)
+  const [show, setShow] = useState(false)
 
   function handleInput(e){
     e.preventDefault()
@@ -79,16 +81,26 @@ function Shop() {
     })
   }
 
-  function handleCheck(e) {
-    e.preventDefault()
-  }
+  useEffect(() => {
+    const handleCheck = () => {
+      if(show === false) {
+        setShow(true)
+      }
+      else {
+        setShow(false)
+      }
+    }
+
+    document.getElementById("cart-btn").addEventListener("click", handleCheck)
+  },  [show])
   
   return (
       <div>
         <div id="cart-bar">
           <div>Shopping cart: {total}</div>
-          <button id="cart-btn" onClick={handleCheck}>Checkout and Pay</button>
+          <button id="cart-btn">View Cart</button>
         </div>
+        <Checkout show={show} items={items}/>
         <div id="items-section">
           {items.map((item) => {
             return <div className="item" key={item.id}>

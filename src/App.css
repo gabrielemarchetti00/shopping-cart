@@ -80,3 +80,20 @@ input {
 button {
     font-size: 20px;
 }
+
+#checkout {
+    height: 500px;
+    width: 400px;
+    background-color: rgb(201, 201, 206);
+    position: absolute;
+    right: 0px;
+}
+
+#pay-btn {
+    position: absolute;
+    bottom: 10px;
+}
+
+#checkout-items {
+    font-size: 30px;
+}

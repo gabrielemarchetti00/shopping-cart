@@ -37,8 +37,14 @@ const itemsArray = [
 function Shop() {
   const [items, setItems] = useState(itemsArray)
 
-  function handleInput() {
-
+  function handleInput(e){
+    e.preventDefault()
+    setItems(items.map(function(item) {
+      if(item.id === e.target.id) {
+        item.num = e.target.value
+      }
+      return item
+    }))
   }
 
   function handlePlus(e){
@@ -78,7 +84,7 @@ function Shop() {
                 <form>
                   <div>
                     <label>Type the number of items you want: </label>
-                    <input value={item.num} onChange={handleInput}/>
+                    <input value={item.num} onChange={handleInput} id={item.id}/>
                     <button className="plus" onClick={handlePlus} id={item.id}>+</button>
                     <button className="minus" onClick={handleMinus} id={item.id}>-</button>
                   </div>

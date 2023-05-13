@@ -36,6 +36,7 @@ const itemsArray = [
 
 function Shop() {
   const [items, setItems] = useState(itemsArray)
+  const [total, setTotal] = useState(0)
 
   function handleInput(e){
     e.preventDefault()
@@ -68,12 +69,25 @@ function Shop() {
       return item
     }))
   }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    items.forEach((item) => {
+      if(item.id === e.target.id) {
+        setTotal(Number(total) + Number(item.num))
+      }
+    })
+  }
+
+  function handleCheck(e) {
+    e.preventDefault()
+  }
   
   return (
       <div>
         <div id="cart-bar">
-          <div>Shopping cart: 0</div>
-          <button id="cart-btn">Checkout and Pay</button>
+          <div>Shopping cart: {total}</div>
+          <button id="cart-btn" onClick={handleCheck}>Checkout and Pay</button>
         </div>
         <div id="items-section">
           {items.map((item) => {
@@ -81,7 +95,7 @@ function Shop() {
               <div className="item-title">{item.title}</div>
               <img className="item-img" src={item.image} alt="item"></img>
               <div>
-                <form>
+                <form onSubmit={handleSubmit} id={item.id}>
                   <div>
                     <label>Type the number of items you want: </label>
                     <input value={item.num} onChange={handleInput} id={item.id}/>

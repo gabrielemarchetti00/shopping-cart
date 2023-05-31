@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/shopping-cart/static/css/main.a9cee9b9.css",
+    "main.js": "/shopping-cart/static/js/main.b61262c0.js",
+    "static/media/ball.webp": "/shopping-cart/static/media/ball.801c97d0d1247aa725da.webp",
+    "static/media/basketball.jpg": "/shopping-cart/static/media/basketball.0f2e45cd0ad77d844908.jpg",
+    "static/media/band.webp": "/shopping-cart/static/media/band.5487a922eafb5223f980.webp",
+    "static/media/shoes.webp": "/shopping-cart/static/media/shoes.9491ca89d524f4b90b10.webp",
+    "static/media/jersey.webp": "/shopping-cart/static/media/jersey.c9a7a29725e2e668c984.webp",
+    "index.html": "/shopping-cart/index.html",
+    "main.a9cee9b9.css.map": "/shopping-cart/static/css/main.a9cee9b9.css.map",
+    "main.b61262c0.js.map": "/shopping-cart/static/js/main.b61262c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a9cee9b9.css",
+    "static/js/main.b61262c0.js"
+  ]
+}
